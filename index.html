@@ -52,13 +52,36 @@
         button:hover {
             background: #0056b3;
         }
+        .response-message {
+            display: none;
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+        }
     </style>
+    <script>
+        function sendEmail(event) {
+            event.preventDefault();
+            
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("message").value;
+            
+            if (name && email && message) {
+                // 模擬寄出 Email
+                setTimeout(() => {
+                    document.getElementById("responseMessage").style.display = "block";
+                    document.getElementById("contactForm").reset();
+                }, 1000);
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <h1>班表都在這 - 客服支援</h1>
         <p>如有任何問題或需要協助，請填寫下方表單，我們的客服團隊將盡快回覆您。</p>
-        <form class="contact-form">
+        <form id="contactForm" class="contact-form" onsubmit="sendEmail(event)">
             <label for="name">姓名：</label>
             <input type="text" id="name" name="name" required>
             
@@ -70,6 +93,7 @@
             
             <button type="submit">提交</button>
         </form>
+        <p id="responseMessage" class="response-message">您的訊息已成功寄出，我們將盡快與您聯繫！</p>
     </div>
 </body>
 </html>
